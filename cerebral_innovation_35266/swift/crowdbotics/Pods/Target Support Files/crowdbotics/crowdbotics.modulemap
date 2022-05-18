@@ -1,0 +1,6 @@
+framework module crowdbotics {
+  umbrella header "crowdbotics-umbrella.h"
+
+  export *
+  module * { export * }
+}

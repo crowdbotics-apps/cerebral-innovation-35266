@@ -1,0 +1,22 @@
+PODS:
+  - crowdbotics (0.1.0)
+  - IQKeyboardManagerSwift (5.0.7)
+  - SideMenu (3.1.5)
+
+DEPENDENCIES:
+  - crowdbotics (from `../`)
+  - IQKeyboardManagerSwift
+  - SideMenu
+
+EXTERNAL SOURCES:
+  crowdbotics:
+    :path: ../
+
+SPEC CHECKSUMS:
+  crowdbotics: f5a348c1211cd8fb6cf8a4d7403c16b0df53a54a
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
+  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+
+PODFILE CHECKSUM: 976b9d3f505697bfefbdc86c01fc85dd9d518a5a
+
+COCOAPODS: 1.4.0

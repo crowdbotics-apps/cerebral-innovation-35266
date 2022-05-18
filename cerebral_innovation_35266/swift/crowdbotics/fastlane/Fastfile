@@ -1,0 +1,74 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "2.85.0"
+
+# This value helps us track success metrics for Fastfiles
+# we automatically generate. Feel free to remove this line
+# once you get things running smoothly!
+generated_fastfile_id "dc731aab-0801-4066-a8e0-920b9ec3dbcc"
+
+default_platform :ios
+
+# Fastfile actions accept additional configuration, but
+# don't worry, fastlane will prompt you for required
+# info which you can add here later
+lane :beta do
+  increment_build_number
+
+  # build your iOS app and upload to TestFlight
+  # check docs
+  # https://docs.fastlane.tools/actions/build_app/#build_app
+  build_app(
+    scheme: "crowdboticsStarter",
+    workspace: "crowdbotics.xcworkspace",
+    configuration: "Release",
+    clean: true,
+    export_method: "app-store"
+  )
+
+  # upload to Testflight
+  pilot(skip_waiting_for_build_processing: true,
+        email:"kamlesh@crowdbotics.com",
+        distribute_external: false)
+
+  # slack(
+  #   slack_url: "https://hooks.slack.com/services/IDS"
+  # )
+end
+
+# Creation in iTunes Connect, certificates, profiles
+lane :provision do 
+  produce(
+    app_name: 'CrowdBoticsStarter0d8fce33',
+    language: 'English',
+    app_version: '1.0',
+    sku: 'cb1230d8fce33',
+    team_name: 'CrowdBotics'
+  )
+  cert(
+  )
+  sigh(
+    force: true,
+  )
+end
+
+# Upload to App Store
+lane :upload do
+  deliver(
+     force: true # Set to true to skip PDF verification
+  )
+end
+
+# Upload to App Store
+lane :do_everything do
+  provision
+  beta
+  upload
+end
+
+# Upload to App Store
+lane :just_testflight do
+  provision
+  beta
+end
